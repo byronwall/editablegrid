@@ -290,7 +290,9 @@ EditableGrid.prototype.removeClassName = function(element, className) { element.
  */
 String.prototype.trim = function() { return (this.replace(/^[\s\xA0]+/, "").replace(/[\s\xA0]+$/, "")); };
 String.prototype.contains = function(str) { return (this.match(str)==str); };
+if(!String.prototype.hasOwnProperty("startsWith")){
 String.prototype.startsWith = function(str) { return (this.match("^"+str)==str); };
+}
 String.prototype.endsWith = function(str) { return (this.match(str+"$")==str); };
 
 //Accepted formats: (for EU just switch month and day)
