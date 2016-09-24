@@ -570,6 +570,7 @@ EditableGrid.prototype.processJSON = function(jsonData)
 
 	// clear model and pointer to current table
 	this.data = [];
+	this.rawData = jsonData;
 	this.dataUnfiltered = null;
 	this.table = null;
 
@@ -1674,7 +1675,9 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 						rows[i].rowId = getRowId(rowIndex);
 						rows[i].id = _getRowDOMId(rows[i].rowId);
 						for (var j = 0; j < cols.length && j < columns.length; j++) 
-							if (columns[j].renderable) columns[j].cellRenderer._render(rowIndex, j, cols[j], getValueAt(rowIndex,j));
+							if (columns[j].renderable){
+							 	columns[j].cellRenderer._render(rowIndex, j, cols[j], getValueAt(rowIndex,j));
+							}
 					}
 					rowIndex++;
 				}
@@ -1742,6 +1745,22 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 					// create cell and render its content
 					var td = tr.insertCell(j);
 					columns[j].cellRenderer._render(i, j, td, getValueAt(i,j));
+								
+					if (j == 0) {
+						//get the indent level
+
+						//rawData is an object
+						//TODO get rid of this search
+						var grid = this;
+						var taskData = this.rawData.data;
+						_.each(taskData, function (item) {
+							if (grid.getRowId(i) == item.id) {
+								//this is the match, get the indent level
+								var indentLevel = item.values.indent;
+								td.style = "padding-left: " + 20 * indentLevel + "px";
+							}
+						});
+					}
 				}
 			}
 
