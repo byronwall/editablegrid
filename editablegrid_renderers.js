@@ -195,6 +195,31 @@ EmailCellRenderer.prototype.render = function(element, value)
 };
 
 /**
+ * Hashtag cell renderer
+ * @constructor
+ * @class Class to render a cell with emails
+ */
+
+function HashtagCellRenderer(config) { this.init(config); }
+HashtagCellRenderer.prototype = new CellRenderer();
+HashtagCellRenderer.prototype.render = function(element, value)
+{
+	//take the value and add SPAN
+	//split on space
+	//if starts with #, wrap with SPAN
+	//put those pieces back together
+	var _ = require("lodash");
+	var output = [];
+	_.each(value.split(" "), function(item){
+		if(item[0] == "#"){
+			item = "<span class=\"label label-primary\">" + item.substring(1) + "</span>";
+		}
+		output.push(item);
+	})
+	element.innerHTML = output.join(" ");
+};
+
+/**
  * Website cell renderer
  * @constructor
  * @class Class to render a cell with websites

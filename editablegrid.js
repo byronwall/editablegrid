@@ -873,6 +873,7 @@ EditableGrid.prototype._createCellRenderer = function(column)
 						column.datatype == "email" ? new EmailCellRenderer() : 
 							column.datatype == "website" || column.datatype == "url" ? new WebsiteCellRenderer() : 
 								column.datatype == "date" ? new DateCellRenderer() :
+									column.datatype == "hashtag" ? new HashtagCellRenderer() :
 									new CellRenderer();
 
 								// give access to the column from the cell renderer
