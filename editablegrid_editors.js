@@ -49,12 +49,20 @@ CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value)
 
 					var candidateRowIndex = this.element.rowIndex;
 					var candidateColumnIndex = this.element.columnIndex;
-					while (true) {
 
-						// find next cell in grid
-						if (candidateColumnIndex < this.celleditor.editablegrid.getColumnCount() - 1) candidateColumnIndex++;
-						else { candidateRowIndex++; candidateColumnIndex = 0; }
-						if (!this.celleditor.editablegrid.getRow(candidateRowIndex)) candidateRowIndex = 0;
+					while (true) {
+						//TODO find a way to simplify this code instead of duplicating
+						// find next cell in grid, go backward if holding SHIFT
+						if(event.shiftKey){
+							if (candidateColumnIndex > 0) candidateColumnIndex--;
+							else { candidateRowIndex--; candidateColumnIndex = this.celleditor.editablegrid.getColumnCount()-1; }
+							if (candidateRowIndex < 0) candidateRowIndex = this.celleditor.editablegrid.getRowCount()-1;
+						}
+						else{
+							if (candidateColumnIndex < this.celleditor.editablegrid.getColumnCount() - 1) candidateColumnIndex++;
+							else { candidateRowIndex++; candidateColumnIndex = 0; }
+							if (candidateRowIndex >= this.celleditor.editablegrid.getRowCount()) candidateRowIndex = 0;
+						}
 
 						// candidate cell is editable: edit it and break
 						var column = this.celleditor.editablegrid.getColumn(candidateColumnIndex);
