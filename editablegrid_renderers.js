@@ -211,8 +211,14 @@ HashtagCellRenderer.prototype.render = function(element, value)
 	var _ = require("lodash");
 	var output = [];
 	_.each(value.split(" "), function(item){
-		if(item[0] == "#"){
+		switch(item[0]){
+
+		case "#":
 			item = "<span class=\"label label-primary\">" + item.substring(1) + "</span>";
+			break;
+		case "@":
+			item = "<span class=\"label label-info\">" + item.substring(1) + "</span>";
+			break;
 		}
 		output.push(item);
 	})
