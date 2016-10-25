@@ -106,6 +106,13 @@ CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value)
 
 	// give focus to the created editor
 	this.autoFocus(editorInput);
+
+	//auto focus the input if supported (for new tasks)
+	this.scrollIntoView(editorInput);
+};
+
+CellEditor.prototype.scrollIntoView = function(editorInput) {
+	editorInput.scrollIntoView();
 };
 
 CellEditor.prototype.autoFocus = function(editorInput) {
