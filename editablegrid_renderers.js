@@ -241,7 +241,7 @@ ActionCellRenderer.prototype.render = function(element, value)
 					<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
 
 				</button>
-				<button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+				<button type="button" class="btn btn-default btn-xs btnDelete" aria-label="Left Align">
 					<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
 				</button>
 			</div>`
