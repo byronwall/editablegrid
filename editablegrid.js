@@ -570,7 +570,14 @@ EditableGrid.prototype.processJSON = function(jsonData)
 
 	// clear model and pointer to current table
 	this.data = [];
-	this.rawData = jsonData;
+
+	var _ = require("lodash");
+	this.rawData = _.keyBy(jsonData.data, function(item){
+		return item.id
+	});
+	rawData = this.rawData
+	jsData = jsonData;
+	
 	this.dataUnfiltered = null;
 	this.table = null;
 
@@ -874,6 +881,7 @@ EditableGrid.prototype._createCellRenderer = function(column)
 							column.datatype == "website" || column.datatype == "url" ? new WebsiteCellRenderer() : 
 								column.datatype == "date" ? new DateCellRenderer() :
 									column.datatype == "hashtag" ? new HashtagCellRenderer() :
+										column.datatype == "action" ? new ActionCellRenderer() :
 									new CellRenderer();
 
 								// give access to the column from the cell renderer
@@ -1741,26 +1749,24 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 				var tr = tBody.insertRow(insertRowIndex++);
 				tr.rowId = data[i]['id'];
 				tr.id = this._getRowDOMId(data[i]['id']);
-				for (j = 0; j < columnCount; j++) {
 
+				//this is the grid item which contains id and values (which is the real Task)
+				//add the completed class if so
+				var item = this.rawData[this.getRowId(i)];
+				if(item.values.isComplete){
+					tr.className += " trComplete";
+				}
+
+				for (j = 0; j < columnCount; j++) {
 					// create cell and render its content
 					var td = tr.insertCell(j);
 					columns[j].cellRenderer._render(i, j, td, getValueAt(i,j));
 								
-					if (j == 0) {
+					//TODO remove this hard coded column ref
+					if (j == 1) {
 						//get the indent level
-
-						//rawData is an object
-						//TODO get rid of this search
-						var grid = this;
-						var taskData = this.rawData.data;
-						_.each(taskData, function (item) {
-							if (grid.getRowId(i) == item.id) {
-								//this is the match, get the indent level
-								var indentLevel = item.values.indent;
-								td.style = "padding-left: " + 20 * indentLevel + "px";
-							}
-						});
+						var indentLevel = item.values.indent;
+						td.style = "padding-left: " + 20 * indentLevel + "px";
 					}
 				}
 			}

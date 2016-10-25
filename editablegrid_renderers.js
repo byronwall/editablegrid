@@ -226,6 +226,29 @@ HashtagCellRenderer.prototype.render = function(element, value)
 };
 
 /**
+ * Hashtag cell renderer
+ * @constructor
+ * @class Class to render a cell with emails
+ */
+
+function ActionCellRenderer(config) { this.init(config); }
+ActionCellRenderer.prototype = new CellRenderer();
+ActionCellRenderer.prototype.render = function(element, value)
+{
+	//return a set of buttons to be wired up elsewhere
+	var innerHTML = `<div class="btn-group">
+				<button type="button" class="btn btn-default btn-xs btnComplete" aria-label="Left Align">
+					<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+
+				</button>
+				<button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+					<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+				</button>
+			</div>`
+	element.innerHTML = innerHTML;
+};
+
+/**
  * Website cell renderer
  * @constructor
  * @class Class to render a cell with websites
