@@ -112,7 +112,17 @@ CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value)
 };
 
 CellEditor.prototype.scrollIntoView = function(editorInput) {
-	editorInput.scrollIntoView();
+	//TODO clean these calls up (maybe just formatting?)
+	if (jQuery(editorInput).position()) {
+		if (jQuery(editorInput).position().top < jQuery(window).scrollTop()) {
+			//scroll up
+			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top }, 1000);
+		}
+		else if (jQuery(editorInput).position().top + jQuery(editorInput).height() > jQuery(window).scrollTop() + (window.innerHeight || document.documentElement.clientHeight)) {
+			//scroll down
+			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top - (window.innerHeight || document.documentElement.clientHeight) + jQuery(editorInput).height() + 15 }, 1000);
+		}
+	}
 };
 
 CellEditor.prototype.autoFocus = function(editorInput) {
