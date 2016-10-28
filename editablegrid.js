@@ -20,8 +20,8 @@ function Column(config)
 			unit: null,
 			precision: -1, // means that all decimals are displayed
 			nansymbol: '',
-			decimal_point: ',',
-			thousands_separator: '.',
+			decimal_point: '.',
+			thousands_separator: ',',
 			unit_before_number: false,
 			bar: true, // is the column to be displayed in a bar chart ? relevant only for numerical columns 
 			hidden: false, // should the column be hidden by default
@@ -1761,9 +1761,8 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 					// create cell and render its content
 					var td = tr.insertCell(j);
 					columns[j].cellRenderer._render(i, j, td, getValueAt(i,j));
-								
-					//TODO remove this hard coded column ref
-					if (j == 1) {
+
+					if (j == this.getColumnIndex("description")) {
 						//get the indent level
 						var indentLevel = item.values.indent;
 						td.style = "padding-left: " + 20 * indentLevel + "px";
