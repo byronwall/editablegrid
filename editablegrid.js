@@ -708,8 +708,8 @@ EditableGrid.prototype.parseColumnType = function(column)
 	// reset
 	column.unit = null;
 	column.precision = -1;
-	column.decimal_point = ',';
-	column.thousands_separator = '.';
+	column.decimal_point = '.';
+	column.thousands_separator = ',';
 	column.unit_before_number = false;
 	column.nansymbol = '';
 
