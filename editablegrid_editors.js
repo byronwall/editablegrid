@@ -116,11 +116,11 @@ CellEditor.prototype.scrollIntoView = function(editorInput) {
 	if (jQuery(editorInput).position()) {
 		if (jQuery(editorInput).position().top < jQuery(window).scrollTop()) {
 			//scroll up
-			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top }, 1000);
+			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top }, 100);
 		}
 		else if (jQuery(editorInput).position().top + jQuery(editorInput).height() > jQuery(window).scrollTop() + (window.innerHeight || document.documentElement.clientHeight)) {
 			//scroll down
-			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top - (window.innerHeight || document.documentElement.clientHeight) + jQuery(editorInput).height() + 15 }, 1000);
+			jQuery('html,body').animate({ scrollTop: jQuery(editorInput).position().top - (window.innerHeight || document.documentElement.clientHeight) + jQuery(editorInput).height() + 15 }, 100);
 		}
 	}
 };

@@ -214,13 +214,13 @@ HashtagCellRenderer.prototype.render = function(element, value)
 		switch (item[0]) {
 
 			case "#":
-				item = "<span class=\"label label-primary\">" + item.substring(1) + "</span>";
+				item = "<span data-type=tags class=\"label label-primary label-search\">" + item.substring(1) + "</span>";
 				break;
 			case "@":
-				item = "<span class=\"label label-info\">" + item.substring(1) + "</span>";
+				item = "<span data-type=status class=\"label label-info label-search\">" + item.substring(1) + "</span>";
 				break;
 			case "!":
-				item = "<span class=\"label label-warning\">" + item.substring(1) + "</span>";
+				item = "<span data-type=milestone class=\"label label-warning label-search\">" + item.substring(1) + "</span>";
 				break;
 		}
 		output.push(item);
