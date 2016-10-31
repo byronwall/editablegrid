@@ -338,6 +338,38 @@ NumberCellEditor.prototype.formatValue = function(value)
 	return this.type == 'integer' ? parseInt(value) : parseFloat(value);
 };
 
+//TODO: clean up variable names
+/**
+ * Number cell editor
+ * @constructor
+ * @class Class to edit a numeric cell with an HTML text input 
+ */
+
+function ArrayCellEditor(config) { 
+	this.init(config);
+}
+
+ArrayCellEditor.prototype = new TextCellEditor(-1, -1);
+
+//editorValue is called in getEditor to initialize field
+ArrayCellEditor.prototype.editorValue = function(value) {
+	return (value === null) ? "" : value;
+};
+
+//getEditorValue is called before passing to isValid and applyEditing
+ArrayCellEditor.prototype.getEditorValue = function(editorInput) {
+	//this is the first call, so here the split is done
+	//TODO add some proper error checking here
+
+	var value = editorInput.value.trim();
+
+	if(value === ""){
+		return [];
+	}
+
+	return editorInput.value.split(",");
+};
+
 /**
  * Select cell editor
  * @constructor

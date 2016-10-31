@@ -195,6 +195,25 @@ EmailCellRenderer.prototype.render = function(element, value)
 };
 
 /**
+ * ArrayCellRenderer cell renderer
+ * @constructor
+ * @class Class to render a cell with emails
+ */
+
+function ArrayCellRenderer(config) { this.init(config); }
+ArrayCellRenderer.prototype = new CellRenderer();
+ArrayCellRenderer.prototype.render = function(element, value)
+{
+	//take the value and add SPAN
+	//split on space
+	//if starts with #, wrap with SPAN
+	//put those pieces back together
+	console.log(value);
+	
+	element.innerHTML = value.join(",");
+};
+
+/**
  * Hashtag cell renderer
  * @constructor
  * @class Class to render a cell with emails
@@ -229,9 +248,9 @@ HashtagCellRenderer.prototype.render = function(element, value)
 };
 
 /**
- * Hashtag cell renderer
+ * ActionCellRenderer cell renderer
  * @constructor
- * @class Class to render a cell with emails
+ * @class Class to render a cell with actions
  */
 
 function ActionCellRenderer(config) { this.init(config); }

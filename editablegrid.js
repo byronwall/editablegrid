@@ -882,6 +882,7 @@ EditableGrid.prototype._createCellRenderer = function(column)
 								column.datatype == "date" ? new DateCellRenderer() :
 									column.datatype == "hashtag" ? new HashtagCellRenderer() :
 										column.datatype == "action" ? new ActionCellRenderer() :
+											column.datatype == "array" ? new ArrayCellRenderer() :
 									new CellRenderer();
 
 								// give access to the column from the cell renderer
@@ -918,15 +919,16 @@ EditableGrid.prototype._createCellEditor = function(column)
 				column.datatype == "integer" || column.datatype == "double" ? new NumberCellEditor(column.datatype) :
 					column.datatype == "boolean" ? null :
 						column.datatype == "email" ? new TextCellEditor(column.precision) :
-							column.datatype == "website" || column.datatype == "url" ? new TextCellEditor(column.precision) :
-								column.datatype == "date" ? (typeof jQuery == 'undefined' || typeof jQuery.datepicker == 'undefined' ? new TextCellEditor(column.precision, 10) : new DateCellEditor({ fieldSize: column.precision, maxLength: 10 })) :
-									new TextCellEditor(column.precision);  
+							column.datatype == "array" ? new ArrayCellEditor() :
+								column.datatype == "website" || column.datatype == "url" ? new TextCellEditor(column.precision) :
+									column.datatype == "date" ? (typeof jQuery == 'undefined' || typeof jQuery.datepicker == 'undefined' ? new TextCellEditor(column.precision, 10) : new DateCellEditor({ fieldSize: column.precision, maxLength: 10 })) :
+										new TextCellEditor(column.precision);  
 
-								// give access to the column from the cell editor
-								if (column.cellEditor) {
-									column.cellEditor.editablegrid = this;
-									column.cellEditor.column = column;
-								}
+									// give access to the column from the cell editor
+									if (column.cellEditor) {
+										column.cellEditor.editablegrid = this;
+										column.cellEditor.column = column;
+									}
 
 
 };
