@@ -256,11 +256,18 @@ ActionCellRenderer.prototype.render = function(element, value)
 	var innerHTML = `<div class="btn-group">
 				<button type="button" class="btn btn-default btn-xs btnComplete" aria-label="Left Align">
 					<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
-
 				</button>
 				<button type="button" class="btn btn-default btn-xs btnDelete" aria-label="Left Align">
 					<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
 				</button>
+
+				<div class="btn-group">
+					<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+					</button>
+					<ul class="dropdown-menu gridMove" aria-labelledby="dropdownMenu1">
+					</ul>
+				</div>
 			</div>`
 	element.innerHTML = innerHTML;
 };
