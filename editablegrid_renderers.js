@@ -204,12 +204,7 @@ function ArrayCellRenderer(config) { this.init(config); }
 ArrayCellRenderer.prototype = new CellRenderer();
 ArrayCellRenderer.prototype.render = function(element, value)
 {
-	//take the value and add SPAN
-	//split on space
-	//if starts with #, wrap with SPAN
-	//put those pieces back together
-	console.log(value);
-	
+	//join the array into a CSV	
 	element.innerHTML = value.join(",");
 };
 
