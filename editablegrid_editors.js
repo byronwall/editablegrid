@@ -35,6 +35,10 @@ CellEditor.prototype.edit = function(rowIndex, columnIndex, element, value)
 
 		event = event || window.event;
 
+		//this check is added to allow events to go to the autocomplete feature
+		if ($(this).data("autocompleting")) {
+			return;
+		}
 		// ENTER or TAB: apply value
 		if (event.keyCode == 13 || event.keyCode == 9) {
 
@@ -223,7 +227,7 @@ CellEditor.prototype.applyEditing = function(element, newValue)
 {
 	with (this) {
 
-		// check that the element is still being edited (otherwise onblur will be called on textfields that have been closed when we go to another tab in Firefox) 
+		// check that the element is still being edited (otherwise onblur will be called on textfields that have been closed when we go to another tab in Firefox)
 		if (element && element.isEditing) {
 
 			// do nothing if the value is rejected by at least one validator
