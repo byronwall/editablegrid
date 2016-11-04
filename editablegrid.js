@@ -1758,6 +1758,10 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 				if(item.values.isComplete){
 					tr.className += " trComplete";
 				}
+				if(item.values.isSelected){
+					console.log("adding class")
+					tr.className += " selected";
+				}
 
 				for (j = 0; j < columnCount; j++) {
 					// create cell and render its content
