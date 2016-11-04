@@ -1759,7 +1759,6 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 					tr.className += " trComplete";
 				}
 				if(item.values.isSelected){
-					console.log("adding class")
 					tr.className += " selected";
 				}
 
