@@ -261,6 +261,10 @@ ActionCellRenderer.prototype.render = function(element, value)
 					<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
 				</button>
 
+				<button type="button" class="btn btn-default btn-xs btnComment" aria-label="Left Align">
+					<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+				</button>			
+
 				<div class="btn-group">
 					<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
