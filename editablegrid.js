@@ -1761,6 +1761,9 @@ EditableGrid.prototype._rendergrid = function(containerid, className, tableid)
 				if(item.values.isSelected){
 					tr.className += " selected";
 				}
+				if(item.values.isProjectRoot){
+					tr.className += " trRoot";
+				}
 
 				for (j = 0; j < columnCount; j++) {
 					// create cell and render its content
